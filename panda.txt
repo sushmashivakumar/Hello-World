@@ -1,0 +1,24 @@
+tr_l=[]
+
+dicty=[]
+with open('boom.txt','r') as f:
+    for line in f.readlines()[1:]:
+        l_s=line.split(',')
+        l_s=line.split(',')
+        ls1=l_s[0].split('/')[0]
+        tr_l.append(ls1)
+        if l_s[1].startswith('now'):
+            l_s[1]=l_s[1]
+            tr_l.append(l_s[0])
+            ls2=l_s[1].split(' ')[1]
+            tr_l.append(ls2)
+        else:
+            tr_l.append(l_s[0])
+            ls2=l_s[2].split(' ')[1]
+            tr_l.append(ls2)
+    
+        dicty.append(tr_l)
+        tr_l=[]
+import pandas as pd
+df = pd.DataFrame(dicty, columns =['Name', 'Full_Name', 'Version'])
+df.to_excel('boom_list_new.xlsx', sheet_name='Version', index=False)
